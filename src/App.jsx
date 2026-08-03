@@ -1,9 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
-import SharedLayout from 'components/SharedLayout/SharedLayout';
-import FirstPage from 'pages/FirstPage/FirstPage';
-import SecondPage from 'pages/SecondPage/SecondPage';
-import HalfPage from 'pages/HalfPage/HalfPage';
-import ErrorPage from 'pages/ErrorPage/ErrorPage';
+import Layout from './components/Layout/Layout';
+import HomePage from './pages/HomePage/HomePage';
+import ToursPage from './pages/ToursPage/ToursPage';
+import TourDetailsPage from './pages/TourDetailsPage/TourDetailsPage';
+import GuidesPage from './pages/GuidesPage/GuidesPage';
+import GuideDetailsPage from './pages/GuideDetailsPage/GuideDetailsPage';
+import GalleryPage from './pages/GalleryPage/GalleryPage';
+import ContactsPage from './pages/ContactsPage/ContactsPage';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import { AppWrapper } from './App.styled';
 
 const test = import.meta.env.VITE_API_TEST;
@@ -13,12 +17,15 @@ function App() {
   return (
     <AppWrapper>
       <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route path="/first" element={<FirstPage />} />
-          <Route path="/second" element={<SecondPage />}>
-            <Route path=":half" element={<HalfPage />} />
-          </Route>
-          <Route path="*" element={<ErrorPage />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="tours" element={<ToursPage />} />
+          <Route path="tours/:tourId" element={<TourDetailsPage />} />
+          <Route path="guides" element={<GuidesPage />} />
+          <Route path="guides/:guideId" element={<GuideDetailsPage />} />
+          <Route path="gallery" element={<GalleryPage />} />
+          <Route path="contacts" element={<ContactsPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </AppWrapper>
